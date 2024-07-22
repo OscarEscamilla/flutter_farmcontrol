@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1089519042728",
+    "project_id": "test-flutter-57a16",
+    "storage_bucket": "test-flutter-57a16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089519042728:android:23a50554d74c427fdec29d",
+        "android_client_info": {
+          "package_name": "com.example.farm_control"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo51J3PKxHFV6kfRBfMS-vL3R2qMeXJio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089519042728:android:374bc53ef95c0d37dec29d",
+        "android_client_info": {
+          "package_name": "com.example.farmcontrol"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo51J3PKxHFV6kfRBfMS-vL3R2qMeXJio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
