@@ -1,4 +1,5 @@
 import 'package:farm_control/screens/root_navigation_screen.dart';
+import 'package:farm_control/utils/ui_utils.dart';
 import 'package:farm_control/viewmodels/AuthViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,8 +14,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -62,18 +61,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () async {
                           User? user = await viewModel.signIn(
                               _emailController.text, _passwordController.text);
+                          print(user);
                           if (user != null) {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => RootNavigationScreen()));
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Please verify your email and password'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
+                            showSnackBar(
+                                "Please verify your email and password",
+                                context);
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -137,7 +134,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 5.0),
                     SocialLoginButton(
                       buttonType: SocialLoginButtonType.google,
-                      onPressed: () {},
+                      onPressed: () {
+                        showSnackBar("Google Login", context);
+                      },
                     )
                   ],
                 ),

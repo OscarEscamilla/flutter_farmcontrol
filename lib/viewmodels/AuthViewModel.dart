@@ -21,8 +21,8 @@ class AuthViewModel with ChangeNotifier {
     return user;
   }
 
-  Future<User?> signUp(String email, String password) async {
-    User? user = await _authRepository.signUpWithEmailAndPassword(email, password);
+  Future<User?> signUp(String email, String password, String username, String phone) async {
+    User? user = await _authRepository.signUpWithEmailAndPassword(email, password, username, phone);
     notifyListeners();
     return user;
   }

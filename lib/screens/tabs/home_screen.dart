@@ -18,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body:  Center(
         child: authViewModel != null
-            ? Text('Welcome, ${authViewModel.user?.email}', style: TextStyle(fontSize: 24))
-            : Text('Please sign in', style: TextStyle(fontSize: 24)),
+            ? Text('Welcome ${authViewModel.user?.email}!', style: TextStyle(fontSize: 20))
+            : Text('Please sign in', style: TextStyle(fontSize: 20)),
       ),
     );
   }
