@@ -1,3 +1,4 @@
+import 'package:farm_control/repositories/SessionManager.dart';
 import 'package:farm_control/screens/root_navigation_screen.dart';
 import 'package:farm_control/screens/auth/login_screen.dart';
 import 'package:farm_control/screens/auth/register_screen.dart';
@@ -8,19 +9,21 @@ import 'repositories/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SessionManager().init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MultiProvider(
+  runApp(
+    MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         // Add other providers if needed
       ],
       child: MyApp(),
-    ),);
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -45,4 +48,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

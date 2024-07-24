@@ -1,3 +1,6 @@
+import 'package:farm_control/constants/UI_constants.dart';
+import 'package:farm_control/constants/constants.dart';
+import 'package:farm_control/repositories/SessionManager.dart';
 import 'package:farm_control/screens/root_navigation_screen.dart';
 import 'package:farm_control/utils/ui_utils.dart';
 import 'package:farm_control/viewmodels/AuthViewModel.dart';
@@ -16,6 +19,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +37,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Image.asset('assets/images/login_image.png'),
               ),
               Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(PADING_SCREEN),
                 child: Column(
                   children: [
                     const SizedBox(height: 16.0),
                     TextField(
                       controller: _emailController,
                       decoration: const InputDecoration(
-                        labelText: 'Email',
+                        //labelText: 'Email',
                         border: OutlineInputBorder(),
                       ),
                       keyboardType: TextInputType.emailAddress,
@@ -54,7 +58,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       obscureText: true,
                     ),
-                    const SizedBox(height: 16.0),
+                    const SizedBox(height: 0),
+                    Row(children: [
+                      Checkbox(
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value ?? false;
+                          });
+                        },
+                      ),
+                      const Text('Recordar session'),
+                    ]),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -67,6 +82,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => RootNavigationScreen()));
+
+                            if (isChecked) {
+                              SessionManager().setString(USER_SESSION_KEY, user.uid);
+                            }
                           } else {
                             showSnackBar(
                                 "Please verify your email and password",

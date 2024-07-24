@@ -1,3 +1,4 @@
+import 'package:farm_control/constants/UI_constants.dart';
 import 'package:farm_control/viewmodels/AuthViewModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +17,36 @@ class _HomeScreenState extends State<HomeScreen> {
     final authViewModel = Provider.of<AuthViewModel>(context);
 
     return Scaffold(
-      body:  Center(
-        child: authViewModel != null
-            ? Text('Welcome ${authViewModel.user?.email}!', style: TextStyle(fontSize: 20))
-            : Text('Please sign in', style: TextStyle(fontSize: 20)),
+        body: SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(PADING_SCREEN),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 70,
+                  height: 70,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border()
+                  ),
+                  child: Image.asset(
+                    'assets/images/cow_img.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(width: 8),
+                Text(
+                  "Welcome ${authViewModel.user?.email?.split("@")[0]}!",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                )
+              ],
+            )
+          ],
+        ),
       ),
-    );
+    ));
   }
 }
